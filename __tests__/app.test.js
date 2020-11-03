@@ -96,6 +96,40 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test('adds one artist to the database and returns it', async() => {
+
+      const expectation =
+        {
+          id: 5,
+          name: 'Big Gigantic',
+          first_album: 2009,
+          on_tour: false,
+          genre: 'electronica',
+          owner_id: 1
+        };
+
+      const data = await fakeRequest(app)
+        .post('/artists')
+        .send({
+          name: 'Big Gigantic',
+          first_album: 2009,
+          on_tour: false,
+          genre: 'electronica',
+          owner_id: 1
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allArtists = await fakeRequest(app)
+        .get('/artists')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+      expect(allArtists.body.length).toEqual(5);
+    });
+
+
   });
 
 });

@@ -31,34 +31,71 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test('returns animals', async() => {
+    test('returns artists', async() => {
 
-    const expectation = [
-      {
-        'id': 1,
-        'name': 'bessie',
-        'coolfactor': 3,
-        'owner_id': 1
-      },
-      {
-        'id': 2,
-        'name': 'jumpy',
-        'coolfactor': 4,
-        'owner_id': 1
-      },
-      {
-        'id': 3,
-        'name': 'spot',
-        'coolfactor': 10,
-        'owner_id': 1
-      }
-    ];
+      const expectation = [
+        {
+          id: 1,
+          name: 'Griz',
+          first_album: 2011,
+          on_tour: false,
+          genre: 'electronica',
+          owner_id: 1
+        },
+        {
+          id: 2,
+          name: 'Odesza',
+          first_album: 2012,
+          on_tour: false,
+          genre: 'indietronica',
+          owner_id: 1
+        },
+        {
+          id: 3,
+          name: 'Disclosure',
+          first_album: 2013,
+          on_tour: false,
+          genre: 'house',
+          owner_id: 1
+        },
+        {
+          id: 4,
+          name: 'Louis the Child',
+          first_album: 2013,
+          on_tour: false,
+          genre: 'dance pop',
+          owner_id: 1
+        },
+      ];
 
-    const data = await fakeRequest(app)
-      .get('/animals')
-      .expect('Content-Type', /json/)
-      .expect(200);
+      const data = await fakeRequest(app)
+        .get('/artists')
+        .expect('Content-Type', /json/)
+        .expect(200);
 
-    expect(data.body).toEqual(expectation);
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns one artist', async() => {
+
+      const expectation =
+        {
+          id: 1,
+          name: 'Griz',
+          first_album: 2011,
+          on_tour: false,
+          genre: 'electronica',
+          owner_id: 1
+        };
+
+      const data = await fakeRequest(app)
+        .get('/artists/1')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
   });
+
 });

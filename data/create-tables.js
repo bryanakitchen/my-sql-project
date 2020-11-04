@@ -19,14 +19,14 @@ async function run() {
                 );           
                 CREATE TABLE genres (
                     id SERIAL PRIMARY KEY,
-                    name VARCHAR(512) NOT NULL,
+                    genre VARCHAR(512) NOT NULL,
                 );           
                 CREATE TABLE artists (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
                     first_album INTEGER NOT NULL,
                     on_tour BOOLEAN NOT NULL,
-                    genre VARCHAR(256) NOT NULL REFERENCES genres(id),
+                    genre INTEGER NOT NULL REFERENCES genres(id),
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);

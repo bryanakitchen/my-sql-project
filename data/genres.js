@@ -1,3 +1,14 @@
 module.exports = [
-    // add types of genres. then in artists array, change to genre_id
-  ]
+  {
+    genre: 'electronica',
+  },
+  {
+    genre: 'indietronica',
+  },
+  {
+    genre: 'house',
+  },
+  {
+    genre: 'dance pop',
+  }
+];

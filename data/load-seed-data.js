@@ -27,7 +27,7 @@ async function run() {
       genres.map(genre => {
         return client.query(`
                       INSERT INTO genres (name)
-                      VALUES ($1, $2)
+                      VALUES ($1)
                       RETURNING *;
                   `,
         [genre.name]);
@@ -39,10 +39,10 @@ async function run() {
     await Promise.all(
       artists.map(artist => {
         return client.query(`
-                    INSERT INTO artists (name, first_album, on_tour, genre, owner_id)
+                    INSERT INTO artists (name, first_album, on_tour, genre_id, owner_id)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-        [artist.name, artist.first_album, artist.on_tour, artist.genre, user.id]);
+        [artist.name, artist.first_album, artist.on_tour, artist.genre_id, user.id]);
       })
     );
     

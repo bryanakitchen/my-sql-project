@@ -129,6 +129,65 @@ describe('app routes', () => {
       expect(allArtists.body.length).toEqual(5);
     });
 
+    test('updates one artist row in the database', async() => {
+
+      const expectation =
+        {
+          id: 3,
+          name: 'Big Gigantic',
+          first_album: 2009,
+          on_tour: false,
+          genre: 'electronica',
+          owner_id: 1
+        };
+
+      const data = await fakeRequest(app)
+        .put('/artists/3')
+        .send({
+          name: 'Big Gigantic',
+          first_album: 2009,
+          on_tour: false,
+          genre: 'electronica',
+          owner_id: 1
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allArtists = await fakeRequest(app)
+        .get('/artists')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+      expect(allArtists.body.length).toEqual(4);
+    });
+
+    test.only('deletes one artist from the database and returns the database', async() => {
+
+      const expectation =
+        {
+          id: 4,
+          name: 'Louis the Child',
+          first_album: 2013,
+          on_tour: false,
+          genre: 'dance pop',
+          owner_id: 1
+        };
+
+      // setting my action
+      const deletedData = await fakeRequest(app)
+        .delete('/artists/4')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allArtists = await fakeRequest(app)
+        .get('/artists')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(deletedData.body).toEqual(expectation);
+      expect(allArtists.body.length).toEqual(3);
+    });
 
   });
 

@@ -162,7 +162,7 @@ describe('app routes', () => {
       expect(allArtists.body.length).toEqual(4);
     });
 
-    test.only('deletes one artist from the database and returns the database', async() => {
+    test('deletes one artist from the database and returns the database', async() => {
 
       const expectation =
         {

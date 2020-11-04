@@ -84,7 +84,7 @@ describe('app routes', () => {
           name: 'Griz',
           first_album: 2011,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         };
 
@@ -104,7 +104,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         };
 
@@ -114,7 +114,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -137,7 +137,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         };
 
@@ -147,7 +147,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -170,7 +170,7 @@ describe('app routes', () => {
           name: 'Louis the Child',
           first_album: 2013,
           on_tour: false,
-          genre: 'dance pop',
+          genre_id: 4,
           owner_id: 1
         };
 

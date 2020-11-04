@@ -1,14 +1,14 @@
 module.exports = [
   {
-    genre: 'electronica',
+    name: 'electronica',
   },
   {
-    genre: 'indietronica',
+    name: 'indietronica',
   },
   {
-    genre: 'house',
+    name: 'house',
   },
   {
-    genre: 'dance pop',
+    name: 'dance pop',
   }
 ];

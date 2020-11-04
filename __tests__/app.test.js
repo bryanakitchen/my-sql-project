@@ -159,7 +159,7 @@ describe('app routes', () => {
         .expect(200);
 
       expect(data.body).toEqual(expectation);
-      expect(allArtists.body.length).toEqual(4);
+      expect(allArtists.body.length).toEqual(5);
     });
 
     test('deletes one artist from the database and returns the database', async() => {
@@ -186,7 +186,7 @@ describe('app routes', () => {
         .expect(200);
 
       expect(deletedData.body).toEqual(expectation);
-      expect(allArtists.body.length).toEqual(3);
+      expect(allArtists.body.length).toEqual(4);
     });
 
   });

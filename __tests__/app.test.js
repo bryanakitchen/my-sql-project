@@ -76,6 +76,35 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test('returns genres', async() => {
+
+      const expectation = [
+        {
+          id: 1,
+          name: 'electronica',
+        },
+        {
+          id: 2,
+          name: 'indietronica',
+        },
+        {
+          id: 3,
+          name: 'house',
+        },
+        {
+          id: 4,
+          name: 'dance pop',
+        }
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/genres')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
     test('returns one artist', async() => {
 
       const expectation =

@@ -76,6 +76,35 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test('returns genres', async() => {
+
+      const expectation = [
+        {
+          id: 1,
+          name: 'electronica',
+        },
+        {
+          id: 2,
+          name: 'indietronica',
+        },
+        {
+          id: 3,
+          name: 'house',
+        },
+        {
+          id: 4,
+          name: 'dance pop',
+        }
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/genres')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
     test('returns one artist', async() => {
 
       const expectation =
@@ -84,7 +113,7 @@ describe('app routes', () => {
           name: 'Griz',
           first_album: 2011,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         };
 
@@ -104,7 +133,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         };
 
@@ -114,7 +143,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -137,7 +166,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         };
 
@@ -147,7 +176,7 @@ describe('app routes', () => {
           name: 'Big Gigantic',
           first_album: 2009,
           on_tour: false,
-          genre: 'electronica',
+          genre_id: 1,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -159,7 +188,7 @@ describe('app routes', () => {
         .expect(200);
 
       expect(data.body).toEqual(expectation);
-      expect(allArtists.body.length).toEqual(4);
+      expect(allArtists.body.length).toEqual(5);
     });
 
     test('deletes one artist from the database and returns the database', async() => {
@@ -170,7 +199,7 @@ describe('app routes', () => {
           name: 'Louis the Child',
           first_album: 2013,
           on_tour: false,
-          genre: 'dance pop',
+          genre_id: 4,
           owner_id: 1
         };
 
@@ -186,7 +215,7 @@ describe('app routes', () => {
         .expect(200);
 
       expect(deletedData.body).toEqual(expectation);
-      expect(allArtists.body.length).toEqual(3);
+      expect(allArtists.body.length).toEqual(4);
     });
 
   });

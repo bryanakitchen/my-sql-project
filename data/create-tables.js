@@ -17,12 +17,16 @@ async function run() {
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );           
+                CREATE TABLE genres (
+                    id SERIAL PRIMARY KEY,
+                    name VARCHAR(512) NOT NULL
+                );           
                 CREATE TABLE artists (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
                     first_album INTEGER NOT NULL,
                     on_tour BOOLEAN NOT NULL,
-                    genre VARCHAR(256) NOT NULL,
+                    genre_id INTEGER NOT NULL REFERENCES genres(id),
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
